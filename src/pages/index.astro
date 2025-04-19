@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+import TravelQuiz from '../components/TravelQuiz.jsx';
+import WeatherWidget from '../components/WeatherWidget.jsx';
+import EventsList from '../components/EventsList.jsx';
+import MapView from '../components/MapView.jsx';
+import TravelChecklist from '../components/TravelChecklist.jsx';
+import TransportOptions from '../components/TransportOptions.jsx';
+
+const destinations = [
+  {
+    title: "Santorini, Greece",
+    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=800",
+    description: "Experience the stunning white architecture and breathtaking sunsets of the Greek Islands."
+  },
+  {
+    title: "Kyoto, Japan",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800",
+    description: "Immerse yourself in Japanese culture with ancient temples and beautiful gardens."
+  },
+  {
+    title: "Machu Picchu, Peru",
+    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=800",
+    description: "Discover the ancient Incan citadel set high in the Andes Mountains."
+  }
+];
+---
+
+<Layout title="Travel Experience - Discover Your Next Adventure">
+  <main class="min-h-screen bg-white">
+    <Hero />
+    
+    <section id="destinations" class="py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Destinos Populares</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {destinations.map(destination => (
+            <DestinationCard {...destination} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <TravelQuiz client:load />
+      </div>
+    </section>
+
+    <section id="features" class="py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Recursos Exclusivos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Previsão do Tempo</h3>
+            <WeatherWidget client:visible destination="Bali" />
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Eventos Locais</h3>
+            <EventsList client:visible destination="Bali" />
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Mapa Interativo</h3>
+            <MapView client:visible destination="Bali" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Ferramentas de Viagem</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Checklist de Viagem</h3>
+            <TravelChecklist client:visible />
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Opções de Transporte</h3>
+            <TransportOptions client:visible destination="Bali" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

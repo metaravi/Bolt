@@ -1,0 +1,23 @@
+{
+  "name": "travel-experience",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --port 4322",
+    "start": "astro dev --port 4322",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.0.10",
+    "@astrojs/tailwind": "^5.1.0",
+    "@supabase/supabase-js": "^2.39.7",
+    "astro": "^4.16.18",
+    "framer-motion": "^11.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.8.1",
+    "tailwindcss": "^3.4.1"
+  }
+}
